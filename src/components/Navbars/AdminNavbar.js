@@ -11,12 +11,13 @@ import Profile from './../../assets/images/Profile.png'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import { BaseUrl } from "../../config";
 
 function Header() {
 
   const handleClick=()=>{
     localStorage.clear();
-    window.location.replace("http://localhost:3000/");
+    window.location.replace(BaseUrl);
 }
 
   return (

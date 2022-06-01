@@ -8,6 +8,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import LoginIcon from '@mui/icons-material/Login';
 import {Link} from "react-router-dom";
 import { Container, Col } from "react-bootstrap";
+import { BaseUrl } from '../config';
 
 
 export default function Login(){
@@ -18,7 +19,7 @@ export default function Login(){
     e.preventDefault();
     localStorage.setItem('Email', email);
     localStorage.setItem('Password', password);
-    window.location.replace("http://localhost:3000/admin/dashboard");
+    window.location.replace(BaseUrl+"admin/dashboard");
   }
 
 
