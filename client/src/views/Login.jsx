@@ -47,8 +47,8 @@ export default function Login(){
         dispatch({type : "LOGIN_SUCCESS", payload: res.data.data})
         navigate("admin/dashboard")
       }catch(e){
-        setError(true);
-        setOpen(true);
+        setError(true)
+        setOpen(true)
         setErrorMsg(e.response.data.message)
         dispatch({type: "LOGIN_FAILURE"})
       }
@@ -59,7 +59,7 @@ export default function Login(){
     if (reason === "clickaway") {
       return;
     }
-    setOpen(false);
+    setOpen(false)
   };
 
 
