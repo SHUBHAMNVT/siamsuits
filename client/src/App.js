@@ -1,7 +1,7 @@
 
 import React from "react";
-
-// import { Context } from "./context/Context";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 import "./assets/css/demo.css";
 import "./assets/css/style-nav.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -23,15 +23,14 @@ import Footer from "./components/Footer/Footer"
 
 function App() {
 
-  const getEmail = localStorage.getItem("Email")
-  const getPassword = localStorage.getItem("Password")
+  const {user} = useContext(Context);
+  // console.log(user)
 
   return (
     <>
-    { getEmail&&getPassword ?
+    { user ?
     
     <Router>
-      {/* {window.location.pathname == "/" ? null: <AdminNavbar />} */}
       <AdminNavbar />
       <Routes>
         <Route exact path="/admin" element={<AdminLayout />}></Route>
@@ -48,7 +47,6 @@ function App() {
         <Route exact path="/admin/repeatorder" element={<Repeatorder />}></Route>
         <Route exact path="/admin/grouporder" element={<Grouporder />}></Route>
       </Routes>
-      {/* {window.location.pathname !== "/" && <Footer />} */}
       <Footer />
     </Router>
     :

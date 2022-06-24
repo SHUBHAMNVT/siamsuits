@@ -19,8 +19,7 @@ export default function Customer() {
         <Row>
       
           <Col lg="12">
-             <div className="panel-change-boxes">
-                
+             <div className="panel-change-boxes"> 
                 <Viewcustomer />
              </div>
           </Col> 

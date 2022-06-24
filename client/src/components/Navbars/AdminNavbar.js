@@ -1,4 +1,6 @@
 import React from "react";
+import { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
@@ -11,14 +13,19 @@ import Profile from './../../assets/images/Profile.png'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { BaseUrl } from "../../config";
+import { Context } from "../../context/Context";
 
 function Header() {
 
+  const { user, dispatch } = useContext(Context)
+  const navigate = useNavigate()
+
   const handleClick=()=>{
-    localStorage.clear();
-    window.location.replace(BaseUrl);
-}
+    if(user){
+      dispatch({type: "LOGOUT"})
+      navigate("/")
+    }
+  }
 
   return (
     <Navbar bg="light" expand="lg">

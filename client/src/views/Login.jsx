@@ -1,26 +1,83 @@
-import React, {useState} from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, {useState, useRef, useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Whitelogo from '../assets/images/Whitelogo.png';
 import Loginbg from '../assets/images/Loginbg.png';
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import {Grid, TextField, Button, Card, InputAdornment } from '@mui/material';
 import {PersonOutline } from '@mui/icons-material';
 import KeyIcon from '@mui/icons-material/Key';
 import LoginIcon from '@mui/icons-material/Login';
 import {Link} from "react-router-dom";
 import { Container, Col } from "react-bootstrap";
-import { BaseUrl } from '../config';
+import { axiosInstance } from '../config';
+import { Context } from '../context/Context';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 
 export default function Login(){
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const navigate = useNavigate();
+  const userRef = useRef()
+  const passwordRef = useRef()
+  const [error, setError] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("")
+  const {dispatch, isFetching} = useContext(Context)
+
  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    localStorage.setItem('Email', email);
-    localStorage.setItem('Password', password);
-    window.location.replace(BaseUrl+"admin/dashboard");
+    e.preventDefault()
+    setError(false);
+    if(userRef.current.value==="" || passwordRef.current.value===""){
+      setError(true);
+      setOpen(true);
+      setErrorMsg("username and password cannot be empty!")
+    }else{
+      dispatch({type : "LOGIN_START"})
+      try{
+        const res = await axiosInstance.post("auth/login", {
+          username: userRef.current.value,
+          password: passwordRef.current.value
+        })
+        dispatch({type : "LOGIN_SUCCESS", payload: res.data.data})
+        navigate("admin/dashboard")
+      }catch(e){
+        setError(true);
+        setOpen(true);
+        setErrorMsg(e.response.data.message)
+        dispatch({type: "LOGIN_FAILURE"})
+      }
+    }
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
 
   return (
@@ -44,12 +101,12 @@ export default function Login(){
                   // autoComplete="name"
                   // name="username"
                   variant="outlined"
-                  required
+                  // required
                   fullWidth
                   // id="username"
                   placeholder="User Name"
                   className='form-control'
-                  onChange={(e) => setEmail(e.target.value)}
+                  inputRef={userRef}
                   autoFocus
                   InputProps={{
                     startAdornment: (
@@ -65,15 +122,13 @@ export default function Login(){
            <Grid item className='custom-form-group'>
              <TextField
                variant="outlined"
-               required
+              //  required
                fullWidth
               //  name="password"
                type="password"
                className='form-control'
-               onChange={(e) => setPassword(e.target.value)} 
+               inputRef={passwordRef}
                placeholder="Password"
-              //  id="password"
-              //  autoComplete="current-password"
                InputProps={{
                 startAdornment: (
                 <InputAdornment position="start">
@@ -94,6 +149,7 @@ export default function Login(){
            variant="contained"
            className='custom-btn-nav'
           //  onClick={() => navigate("/admin/dashboard")}
+           disabled={isFetching}
            color="primary">
            <LoginIcon className="loginicon"/>  
               Login 
@@ -110,6 +166,25 @@ export default function Login(){
        </form>
          
          </Card>
+         {error &&
+              <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        action={action}
+      >
+         <Alert
+                onClose={handleClose}
+                severity="error"
+                sx={{ width: "100%" }}
+              >
+                {/* Wrong username / password */}
+                {errorMsg}
+              </Alert>
+              
+        </Snackbar>
+        
+            }
          </Container>
         </section>
     </>

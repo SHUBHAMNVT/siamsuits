@@ -89,7 +89,7 @@ const AccountForm = () => {
   const { control } = useFormContext();
   return (
     <>
-      <Controller
+      {/* <Controller
         control={control}
         name="firstName"
         render={({ field }) => (
@@ -135,7 +135,7 @@ const AccountForm = () => {
             {...field}
           />
         )}
-      />
+      /> */}
       <Step1 />
     </>
   );

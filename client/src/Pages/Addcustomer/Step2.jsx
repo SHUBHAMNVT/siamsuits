@@ -554,8 +554,6 @@ const handleChangeIndex = (index) => {
     </Box>
 
     </div> 
-    {/* <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
-    <input type="button" name="next" class="next action-button" value="Save" /> */}
 </fieldset>
   );
 }
