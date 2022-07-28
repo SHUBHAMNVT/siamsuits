@@ -4,8 +4,6 @@ import {
     Row,
     Col,
   } from "react-bootstrap";
-import Sidepanelnav from "../../views/Sidepanelnav" ;
-import Dashboardfront from "../../views/Dashboardfront";
 import Viewcustomer from './Viewcustomer';
 import {
     BrowserRouter as Router,
@@ -15,16 +13,15 @@ import {
 export default function Customer() {
   return (
     <>
-      <Container fluid>
+      {/* <Container fluid>
         <Row>
-      
           <Col lg="12">
-             <div className="panel-change-boxes"> 
+             <div className="panel-change-boxes">  */}
                 <Viewcustomer />
-             </div>
+             {/* </div>
           </Col> 
         </Row>
-      </Container>
+      </Container> */}
     </>
   )
 }

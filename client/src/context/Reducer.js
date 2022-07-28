@@ -42,7 +42,7 @@ const Reducer = (state, action) => {
         error: false,
       };
       default:
-          return state;
+        return state;
   }
 };
 

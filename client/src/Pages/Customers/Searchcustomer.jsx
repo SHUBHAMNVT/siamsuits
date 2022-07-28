@@ -50,7 +50,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     createData('2',  '24 June 2022', '12345678901', 'Sanjana', '1 Pants,1 Vest,1 Shirt'),
     createData('3',  '24 June 2022', '12345678901', 'Sanjana', '1 Pants,1 Vest,1 Shirt'),
     createData('4',  '24 June 2022', '12345678901', 'Sanjana', '1 Pants,1 Vest,1 Shirt'),
-    createData('5',  '24 June 2022', 'ABDCEFGHIJKL', 'Sanjana', '1 Pants,1 Vest,1 Shirt'),
+    createData('5',  '24 June 2022', 'ABDCEFGHIJK', 'Sanjana', '1 Pants,1 Vest,1 Shirt'),
     createData('6',  '24 June 2022', '12345678901', 'Sanjana', '1 Pants,1 Vest,1 Shirt'),
   ];
 

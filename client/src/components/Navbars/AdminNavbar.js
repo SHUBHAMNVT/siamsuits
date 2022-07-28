@@ -20,7 +20,7 @@ function Header() {
   const { user, dispatch } = useContext(Context)
   const navigate = useNavigate()
 
-  const handleClick=()=>{
+  const handleClick = () => {
     if(user){
       dispatch({type: "LOGOUT"})
       navigate("/")
@@ -165,11 +165,6 @@ function Header() {
                 <span className="no-icon"> <img src={Profile} alt="" /> </span>
               </Dropdown.Toggle>
               <Dropdown.Menu aria-labelledby="navbarDropdownMenuLink">
-              <Dropdown.Item
-                 
-                > 
-                  <PermIdentityIcon />Login
-                </Dropdown.Item>
                 <Dropdown.Item
                   href="/admin/viewprofile"
                   onClick={(e) => e.preventDefault()}
@@ -182,7 +177,6 @@ function Header() {
                 >
                   <LogoutIcon /> Logout
                 </Dropdown.Item>
-               
               </Dropdown.Menu>
             </Dropdown>
             

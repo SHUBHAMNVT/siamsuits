@@ -1,24 +1,55 @@
-import React from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import { TextField } from '@mui/material';
-import {
-    Row,
-    Col,
-  } from "react-bootstrap";
-  import MenuItem from '@mui/material/MenuItem';
-  import Select from '@mui/material/Select';
+import { Row, Col } from "react-bootstrap";
+import MenuItem from '@mui/material/MenuItem';
+import { Context } from '../../context/Context';
+import { Controller, useFormContext} from "react-hook-form";
    
 export default function Step1() {
+  const { control } = useFormContext(); 
 
-  const [gender, setGender] = React.useState(''); 
-  const handleChange = (event) => {
-      setGender(event.target.value);
 
-  };
- const [country, setCountry] = React.useState(''); 
-  const handleChangecountry = (event) => {
-      setCountry(event.target.value);
-      console.log(event.target.value);
-  };
+  // console.log(customer)
+
+  // if(customer){
+  //   if(firstname === "" || lastname === "" || gender=== "" || email === "" || city === "" || country === "" || phone === ""){
+  //     // setOpen(true);
+  //     // setError(true)
+  //   }
+  // }
+
+  const genders = [
+    {
+      value: "Male",
+      label: "Male",
+    },
+    {
+      value: "Female",
+      label: "Female",
+    },
+    {
+      value: "Transgender",
+      label: "Transgender",
+    },
+  
+  ];
+
+  const countries = [
+    {
+      value: "India",
+      label: "India",
+    },
+    {
+      value: "Australia",
+      label: "Australia",
+    },
+    {
+      value: "Russia",
+      label: "Russia",
+    },
+  
+  ];
+
   return (
     <fieldset>
      <div class="form-card-Nav">
@@ -26,110 +57,206 @@ export default function Step1() {
         <Row>
           <Col xs="6">
             <div className='form-group'>
-              <label> First Name </label>
-            <TextField
-              name="First Name *"
-              fullWidth
-              type="text"
-              id="firstname"
-              className='form-control-custom'
-              autoFocus
+            <Controller
+              control={control}
+              name="firstname"
+              render={({ field }) => (
+                <TextField
+                  required
+                  label="First Name"
+                  type="text"
+                  fullWidth
+                  autoFocus
+                  {...field}
+                />
+              )}
             />
-            </div>
-          </Col>
-          <Col xs="6">
-          <div className='form-group'>
-          <label> Last Name </label>
-          <TextField
-              name="Last Name *"
-              fullWidth
+            {/* <TextField
+              label="First Name"
               type="text"
-              id="lastname"
-              className='form-control-custom'
-              autoFocus
-            />
-            </div>
-          </Col>
-          <Col xs="6">
-          <div className='form-group'>
-          <label> Gender </label>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={gender}
-            label="Gender"
-            className='form-control-custom'
-            onChange={handleChange}
-            >
-            <MenuItem value={10} selected>Select</MenuItem> 
-            <MenuItem value={10}>Male</MenuItem>
-            <MenuItem value={20}>Female</MenuItem>
-            <MenuItem value={30}>Transgender</MenuItem>
-            
-            </Select>
-            </div>
-          </Col>
-          <Col xs="6">
-          <div className='form-group'>
-          <label> Email </label>
-            <TextField
-              name="Email"
+              onChange={(e) => setfirstName(e.target.value)}
               fullWidth
+              autoFocus
+            /> */}
+            </div>
+          </Col>
+          <Col xs="6">
+          <div className='form-group'>
+            <Controller
+              control={control}
+              name="lastname"
+              render={({ field }) => (
+                <TextField
+                  required
+                  label="Last Name"
+                  type="text"
+                  fullWidth
+                  autoFocus
+                  {...field}
+                />
+              )}
+            />
+            {/* <TextField
+              label="Last Name"
+              type="text"
+              onChange={(e) => setlastName(e.target.value)}
+              fullWidth
+              autoFocus
+            /> */}
+            </div>
+          </Col>
+          <Col xs="6">
+          <div className='form-group'>
+            <Controller
+              control={control}
+              name="gender"
+              render={({ field }) => (
+                <TextField
+                    required
+                    fullWidth
+                    id="gender"
+                    select
+                    label="Select Gender"
+                    {...field}
+                    >
+                      {genders.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                </TextField>
+              )}
+            />
+            {/* <TextField
+                fullWidth
+                id="gender"
+                select
+                label="Select Gender"
+                onChange={(e) => setGender(e.target.value)}
+                >
+                  {genders.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+            </TextField> */}
+            </div>
+          </Col>
+          <Col xs="6">
+          <div className='form-group'>
+          <Controller
+              control={control}
+              name="email"
+              render={({ field }) => (
+                <TextField
+                  required
+                  label="Email"
+                  type="email"
+                  fullWidth
+                  autoFocus
+                  {...field}
+                />
+              )}
+            />
+            {/* <TextField
+              label="Email"
               type="email"
-              id="customername"
-              className='form-control-custom'
-              autoFocus
-            />
-            </div>
-          </Col>
-          <Col xs="6">
-          <div className='form-group'>
-          <label> City </label>
-            <TextField
-              name="city"
+              onChange={(e) => setEmail(e.target.value)}
               fullWidth
-              type="text"
-              id="customername"
-              className='form-control-custom'
               autoFocus
-            />
-            </div>
-          </Col>
-          <Col xs="6">
-          <div className='form-group'>
-          <label> Country </label>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={country}
-            label="Country"
-            className='form-control-custom'
-            onChange={handleChangecountry}
-            >
-            <MenuItem value={10} selected>Select Country</MenuItem> 
-            <MenuItem value={10}>Afganistan</MenuItem>
-            <MenuItem value={20}>America</MenuItem>
-            <MenuItem value={30}>Africa</MenuItem>
+            /> */}
             
-            </Select>
             </div>
           </Col>
           <Col xs="6">
           <div className='form-group'>
-          <label> Cell Phone </label>
-            <TextField
-              name="Cell Phone"
-              fullWidth
-              type="text"
-              id="cellphone"
-              className='form-control-custom'
-              autoFocus
+          <Controller
+              control={control}
+              name="city"
+              render={({ field }) => (
+                <TextField
+                  required
+                  label="City"
+                  type="text"
+                  fullWidth
+                  autoFocus
+                  {...field}
+                />
+              )}
             />
+            {/* <TextField
+              label="City"
+              type="text"
+              onChange={(e) => setCity(e.target.value)}
+              fullWidth
+              autoFocus
+            /> */}
+            </div>
+          </Col>
+          <Col xs="6">
+          <div className='form-group'>
+            <Controller
+              control={control}
+              name="country"
+              render={({ field }) => (
+                <TextField
+                    required
+                    fullWidth
+                    id="country"
+                    select
+                    label="Select Country"
+                    {...field}
+                    >
+                      {countries.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                </TextField>
+              )}
+            />
+            {/* <TextField
+                fullWidth
+                id="country"
+                select
+                label="Select Country"
+                onChange={(e) => setCountry(e.target.value)}
+                >
+                  {countries.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+            </TextField> */}
+            </div>
+          </Col>
+          <Col xs="6">
+          <div className='form-group'>
+            <Controller
+              control={control}
+              name="phone"
+              render={({ field }) => (
+                <TextField
+                  required
+                  label="Cell Phone"
+                  type="tel"
+                  fullWidth
+                  autoFocus
+                  {...field}
+                />
+              )}
+            />
+            {/* <TextField
+              label="Cell Phone"
+              type="tel"
+              onChange={(e) => setCellphone(e.target.value)}
+              fullWidth
+              autoFocus
+            /> */}
             </div>
           </Col>
         </Row>
-    </div> 
-    {/* <input type="button" name="next" class="next action-button" value="Save" /> */}
+    </div>
 </fieldset>
   )
 }

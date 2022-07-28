@@ -48,9 +48,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const rows = [
     createData('1',  'Test 01', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt', ),
     createData('2',  'Test 02', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
-    createData('3',  'Test 03', '', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
+    createData('3',  'Test 03', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
     createData('4',  'Test 04', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
-    createData('5',  'Test 05', '', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
+    createData('5',  'Test 05', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
     createData('6',  'Test 06', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
     createData('6',  'Test 07', 'info@example.com', <Link to="/"> View </Link>, '1 Pants,1 Vest,1 Shirt'),
   ];

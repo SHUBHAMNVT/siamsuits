@@ -229,13 +229,13 @@ select.list-dt:focus {
 .form-sizess-boxes .row {
     margin-bottom: 1rem;
 }
-.mesurment-name p {
+.Measurment-name p {
     margin: 0;
     color: #091b27;
     font-weight: 550;
     font-size: 14px;
 }
-.mesurment-name {
+.Measurment-name {
     border: 1px solid #f5f5f5;
     padding: 8px 15px;
     display: flex;

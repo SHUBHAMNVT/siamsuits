@@ -7,25 +7,34 @@ require("./mongoose/mongoose")
 const app = express()
 const Port = process.env.PORT || 4545
 
+// const Client_URL = "https://siamsuits123.herokuapp.com"
+// const Client_URL = "http://localhost:3000/"
+
 // const corsOptions =  {
-//   origin: "http://localhost:3000",
+//   origin: "https://siamsuits123.herokuapp.com",
 //   methods: "GET,POST,PUT,DELETE",
 //   credentials: true,
 // }
+// app.use(cors(corsOptions))
 app.use(cors())
 
 app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
 
-app.use("/", express.static(path.join(__dirname, "/public")))
+// app.use("/", express.static(path.join(__dirname, "/public")))
 
-if(process.env.NODE_ENV == 'production'){
-  app.use(express.static('client/build'))
+// connect to the fronted=============================
 
-  app.get('*', (req, res) =>{
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  })
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static( 'client/build' ));
+
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
 }
+
+
+
 
 // Routes====================================
 

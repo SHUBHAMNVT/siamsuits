@@ -34,7 +34,6 @@ function App() {
       <AdminNavbar />
       <Routes>
         <Route exact path="/admin" element={<AdminLayout />}></Route>
-        {/* <Route exact path="/" element={ <Login />}></Route> */}
         <Route exact path="/admin/dashboard" element={<Dashboard />}></Route>
         <Route exact path="/admin/order" element={<Orders />}></Route>
         <Route exact path="/admin/shipment" element={<Shipments />}></Route>
@@ -47,7 +46,7 @@ function App() {
         <Route exact path="/admin/repeatorder" element={<Repeatorder />}></Route>
         <Route exact path="/admin/grouporder" element={<Grouporder />}></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
     :
     <Router>

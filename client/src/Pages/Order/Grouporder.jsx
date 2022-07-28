@@ -72,7 +72,7 @@ export default function Groudorder() {
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="Dashboard table">
                     <TableHead>
-                        <TableRow className='order-table-nav'>
+                      <TableRow className='order-table-nav'>
                         <StyledTableCell> Id </StyledTableCell>
                         <StyledTableCell align="center">Customer Name</StyledTableCell>
                         <StyledTableCell align="center"> Order No. </StyledTableCell>
@@ -80,22 +80,20 @@ export default function Groudorder() {
                         <StyledTableCell align="center"> QTY </StyledTableCell>
                         <StyledTableCell align="center"> Status </StyledTableCell>
                         <StyledTableCell align="center"> Repet Order </StyledTableCell>
-                        </TableRow>
+                      </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                      {rows.map((row) => (
                         <StyledTableRow key={row.orderno} className='Table-body-nav'>
-                            <StyledTableCell component="th" scope="row">
-                            {row.id}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">{row.customername}</StyledTableCell>
-                            <StyledTableCell align="center">{row.orderno}</StyledTableCell>
-                            <StyledTableCell align="center">{row.orderdate}</StyledTableCell>
-                            <StyledTableCell align="center">{row.qty}</StyledTableCell>
-                            <StyledTableCell align="center">{row.status}</StyledTableCell>
-                            <StyledTableCell align="center"><button className='repeatorderbtn'> Group Order </button> </StyledTableCell>
+                          <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
+                          <StyledTableCell align="center">{row.customername}</StyledTableCell>
+                          <StyledTableCell align="center">{row.orderno}</StyledTableCell>
+                          <StyledTableCell align="center">{row.orderdate}</StyledTableCell>
+                          <StyledTableCell align="center">{row.qty}</StyledTableCell>
+                          <StyledTableCell align="center">{row.status}</StyledTableCell>
+                          <StyledTableCell align="center"><button className='repeatorderbtn'> Group Order </button> </StyledTableCell>
                         </StyledTableRow>
-                        ))}
+                      ))}
                     </TableBody>
                     </Table>
                 </TableContainer>

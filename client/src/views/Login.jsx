@@ -98,12 +98,8 @@ export default function Login(){
            <Col item xs={12}>
              <Grid item className='custom-form-group'>
                 <TextField
-                  // autoComplete="name"
-                  // name="username"
                   variant="outlined"
-                  // required
                   fullWidth
-                  // id="username"
                   placeholder="User Name"
                   className='form-control'
                   inputRef={userRef}
@@ -122,9 +118,7 @@ export default function Login(){
            <Grid item className='custom-form-group'>
              <TextField
                variant="outlined"
-              //  required
                fullWidth
-              //  name="password"
                type="password"
                className='form-control'
                inputRef={passwordRef}
@@ -148,7 +142,6 @@ export default function Login(){
            fullWidth
            variant="contained"
            className='custom-btn-nav'
-          //  onClick={() => navigate("/admin/dashboard")}
            disabled={isFetching}
            color="primary">
            <LoginIcon className="loginicon"/>  
